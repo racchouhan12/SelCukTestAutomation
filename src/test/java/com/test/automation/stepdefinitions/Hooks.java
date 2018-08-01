@@ -2,6 +2,7 @@ package com.test.automation.stepdefinitions;
 
 import com.test.automation.utilities.DriverUtils;
 import com.test.automation.utilities.ThisRun;
+import com.test.automation.helpers.*;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import org.openqa.selenium.WebDriver;
@@ -27,13 +28,13 @@ public class Hooks {
                 new FileInputStream(thisRun.get("TEST_RESOURCES") + "/CommonProperties.properties");
         Properties commonProperties = new Properties();
         commonProperties.load(fileStream);
-        thisRun.add("BROWSER", commonProperties.getProperty("BROWSER"));
+        thisRun.add(KEYS.BROWSER, commonProperties.getProperty("BROWSER"));
     }
 
     private void addDriverProperties() {
         driverUtils = new DriverUtils(thisRun.getAsString("BROWSER"));
         driver = driverUtils.getDriver(driverUtils.browser);
-        thisRun.add("DRIVER", driver);
+        thisRun.add(KEYS.DRIVER, driver);
     }
 
     @After
