@@ -16,7 +16,6 @@ public class Reporter {
 
     public static void main(String[] arg) {
 
-        System.out.println("Inside Reporter..........");
         String reportsDir = ThisRun.getInstance().sessionState.get("REPORT_PATH").toString();
         System.out.println(reportsDir);
         File reportOutputDirectory = new File(reportsDir);
@@ -32,9 +31,9 @@ public class Reporter {
 
             ReportBuilder reportBuilder = new ReportBuilder(jsonReportFiles, configuration);
             reportBuilder.generateReports();
-            System.out.println("\n\tHTML Reports are available here - $reportsDir");
+            System.out.println("\n\tHTML Reports are available here - "+ reportsDir + "/cucumber-html-reports \n" );
         } catch (Exception e) {
-            System.out.println("ERROR in creating consolidated reporter - $e");
+            System.out.println("ERROR in creating consolidated reporter - "+ e);
         }
     }
 
