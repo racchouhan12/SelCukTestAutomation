@@ -29,8 +29,7 @@ Framework structure:
 7. Call flows are as follows:
     i. run commands:
         a. mvn clean
-        b. mvn install
-        c. mvn test
+        b. mvn install or mvn test
     ii. Now execution will begin
 
         Call hierarchy are as follows:
