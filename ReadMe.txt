@@ -48,6 +48,6 @@ Framework structure:
 
  Rules to be followed:
 
- 1. We should not call businessflows directly from stepdefinitions call hierarchy should be maintained (stepdefinitions -> businessflows -> screens).
+ 1. We should not call screens directly from stepdefinitions call hierarchy should be maintained (stepdefinitions -> businessflows -> screens).
  2. All assertions should be done in businessflows only
  3. Mutiple businessflows can be called from stepdefinitions
