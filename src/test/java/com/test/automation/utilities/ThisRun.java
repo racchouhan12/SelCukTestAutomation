@@ -1,5 +1,6 @@
 package com.test.automation.utilities;
 
+import com.test.automation.helpers.KEYS;
 import org.openqa.selenium.WebDriver;
 
 import java.util.HashMap;
@@ -18,13 +19,17 @@ public class ThisRun {
 
     private ThisRun() {
         sessionState.clear();
-        sessionState.put("PROJECT_PATH", System.getProperty("user.dir"));
-        sessionState.put("TEST_RESOURCES", getAsString("PROJECT_PATH")+"/src/test/resources");
-        sessionState.put("REPORT_PATH", getAsString("PROJECT_PATH")+"/reports");
+        add(KEYS.PROJECT_PATH, System.getProperty("user.dir"));
+        add(KEYS.TEST_RESOURCES, getAsString("PROJECT_PATH")+"/src/test/resources");
+        add(KEYS.REPORT_PATH, getAsString("PROJECT_PATH")+"/reports");
     }
 
     public void add(String key, Object value) {
         sessionState.put(key, value);
+    }
+
+    public void add(KEYS key, Object value) {
+        add(key.name(), value);
     }
 
     public Object get(String key) {
