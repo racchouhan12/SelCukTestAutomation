@@ -9,12 +9,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class RuntimeScripts {
+public class Main {
     private static ThisRun thisRun = ThisRun.getInstance();
     private static final String FEATURE_FILE_PATH = thisRun.getAsString(KEYS.FEATURE_FILES_PATH.name());
     private static String reportFolderPath;
 
-    public RuntimeScripts() {
+    public Main() {
 
     }
 
