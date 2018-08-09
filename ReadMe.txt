@@ -51,3 +51,13 @@ Framework structure:
  1. We should not call screens directly from stepdefinitions call hierarchy should be maintained (stepdefinitions -> businessflows -> screens).
  2. All assertions should be done in businessflows only
  3. Mutiple businessflows can be called from stepdefinitions
+
+ How to run Test:
+
+ 1. To run specific scenarios use command : run=@foo mvn test -PRunTest (For MAC)
+    For Windows you might need to use
+    a. set run=@foo
+    b. mvn test -PRunTest
+ 2. To run all scenarios use command : mvn test -PRunTest
+
+ Note: In both cases scenarios with tags @wip or @failing will be ignored.
