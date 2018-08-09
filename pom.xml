@@ -15,6 +15,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
         <maven.compile.encoding>UTF-8</maven.compile.encoding>
+        <selenium.java.version>3.13.0</selenium.java.version>
+        <selenium.server.version>3.13.0</selenium.server.version>
+        <selenium.chromedriver.version>3.13.0</selenium.chromedriver.version>
+        <cucumber.java8.version>1.2.5</cucumber.java8.version>
+        <cucumber.junit.version>1.2.5</cucumber.junit.version>
+        <cucumber.core.version>1.2.5</cucumber.core.version>
+        <cucumber.reporting.version>3.19.0</cucumber.reporting.version>
         <jars>${project.build.directory}/lib</jars>
     </properties>
 
@@ -25,19 +32,19 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.13.0</version>
+            <version>${selenium.java.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-server</artifactId>
-            <version>3.13.0</version>
+            <version>${selenium.server.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
-            <version>3.13.0</version>
+            <version>${selenium.chromedriver.version}</version>
         </dependency>
 
         <!--    Cucumber dependencies  -->
@@ -45,19 +52,19 @@
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-java8</artifactId>
-            <version>1.2.5</version>
+            <version>${cucumber.java8.version}</version>
         </dependency>
 
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-core</artifactId>
-            <version>1.2.5</version>
+            <version>${cucumber.core.version}</version>
         </dependency>
 
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>1.2.5</version>
+            <version>${cucumber.junit.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -65,7 +72,7 @@
         <dependency>
             <groupId>net.masterthought</groupId>
             <artifactId>cucumber-reporting</artifactId>
-            <version>3.19.0</version>
+            <version>${cucumber.reporting.version}</version>
         </dependency>
     </dependencies>
 
@@ -126,6 +133,6 @@
                 </plugins>
             </build>
         </profile>
-
    </profiles>
+
 </project>
