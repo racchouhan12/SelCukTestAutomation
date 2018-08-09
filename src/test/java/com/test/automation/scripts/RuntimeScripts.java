@@ -1,15 +1,29 @@
 package com.test.automation.scripts;
 
 import com.test.automation.helpers.KEYS;
+import com.test.automation.utilities.FileUtils;
 import com.test.automation.utilities.ThisRun;
 import org.apache.commons.lang3.ArrayUtils;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class RuntimeScripts {
     private static ThisRun thisRun = ThisRun.getInstance();
     private static final String FEATURE_FILE_PATH = thisRun.getAsString(KEYS.FEATURE_FILES_PATH.name());
+    private static String reportFolderPath;
 
     public RuntimeScripts() {
 
+    }
+
+    private static String createReportFolder() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH_mm_ss");
+        reportFolderPath = thisRun.getAsString(KEYS.PROJECT_PATH.name())+"/reports/reports_"+dateFormat.format(new Date());
+        FileUtils.createFolder(reportFolderPath);
+        System.out.println("Report folder created: "+ reportFolderPath);
+        return reportFolderPath;
     }
 
     private static String getRunTag() {
@@ -21,8 +35,9 @@ public class RuntimeScripts {
         return excludeTags;
     }
 
-    private static void generateHTMLReports() {
-        com.test.automation.utilities.Reporter.main(null);
+    private static void generateHTMLReports(String reportPath) {
+        String[] reportArgs = {reportPath};
+        com.test.automation.utilities.Reporter.main(reportArgs);
     }
 
     private static String[] getCucumberOptions() {
@@ -37,9 +52,9 @@ public class RuntimeScripts {
                 "--plugin",
                 "pretty",
                 "--plugin",
-                "html:reports/html",
+                "html:"+reportFolderPath+"/html",
                 "--plugin",
-                "json:reports/cucumber.json",
+                "json:"+reportFolderPath+"/cucumber.json",
                 FEATURE_FILE_PATH
         };
         if (getRunTag() != null) {
@@ -54,8 +69,9 @@ public class RuntimeScripts {
     }
 
     public static void main(String[] argv) throws Throwable {
+        String reportPath = createReportFolder();
         byte exitstatus = cucumber.api.cli.Main.run(getCucumberOptions(), Thread.currentThread().getContextClassLoader());
-        generateHTMLReports();
+        generateHTMLReports(reportPath);
         System.exit(exitstatus);
     }
 }
