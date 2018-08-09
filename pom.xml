@@ -125,7 +125,7 @@
                                         <additionalClasspathElement>${project.build.directory}/test-classes
                                         </additionalClasspathElement>
                                     </additionalClasspathElements>
-                                    <mainClass>com.test.automation.scripts.RuntimeScripts</mainClass>
+                                    <mainClass>com.test.automation.scripts.Main</mainClass>
                                 </configuration>
                             </execution>
                         </executions>
