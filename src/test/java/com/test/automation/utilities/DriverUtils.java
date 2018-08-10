@@ -1,5 +1,7 @@
 package com.test.automation.utilities;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,6 +13,7 @@ public class DriverUtils {
 
     ThisRun thisRun = ThisRun.getInstance();
 
+    private static Logger logger = LogManager.getLogger(DriverUtils.class.getName());
     public String browser;
 
     public DriverUtils(String browser) {
@@ -32,6 +35,7 @@ public class DriverUtils {
     }
 
     public WebDriver getDriver(String browser) {
+        logger.info("Instantiating Driver for browser: "+browser);
         switch (browser.toLowerCase()) {
             case "chrome":
                 return instantiateChromeDriver();
