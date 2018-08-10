@@ -4,12 +4,15 @@ import com.test.automation.helpers.KEYS;
 import com.test.automation.utilities.FileUtils;
 import com.test.automation.utilities.ThisRun;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Main {
+    private static Logger logger = LogManager.getLogger(Main.class.getName());
     private static ThisRun thisRun = ThisRun.getInstance();
     private static final String FEATURE_FILE_PATH = thisRun.getAsString(KEYS.FEATURE_FILES_PATH.name());
     private static String reportFolderPath;
@@ -22,7 +25,7 @@ public class Main {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH_mm_ss");
         reportFolderPath = thisRun.getAsString(KEYS.PROJECT_PATH.name())+"/reports/reports_"+dateFormat.format(new Date());
         FileUtils.createFolder(reportFolderPath);
-        System.out.println("Report folder created: "+ reportFolderPath);
+        logger.info("Report folder created: "+ reportFolderPath);
         return reportFolderPath;
     }
 
@@ -58,20 +61,22 @@ public class Main {
                 FEATURE_FILE_PATH
         };
         if (getRunTag() != null) {
-            System.out.println("Running all Scenarios: with tags: " +getRunTag() + " (except @wip, @failing)......" );
+           logger.info("Running all Scenarios: with tags: " +getRunTag() + " (except @wip, @failing)......" );
             String[] runtag =  {"--tags", getRunTag()};
             return ArrayUtils.addAll(runtag, commonOptions);
 
         }
-            System.out.println("Running all Scenarios except @wip, @failing...");
+        logger.info("Running all Scenarios except @wip, @failing...");
             return commonOptions;
 
     }
 
     public static void main(String[] argv) throws Throwable {
         String reportPath = createReportFolder();
+        logger.info("Starting Scenario execution....");
         byte exitstatus = cucumber.api.cli.Main.run(getCucumberOptions(), Thread.currentThread().getContextClassLoader());
         generateHTMLReports(reportPath);
+        logger.info("Exit status is:" +exitstatus);
         System.exit(exitstatus);
     }
 }
