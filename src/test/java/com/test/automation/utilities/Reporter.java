@@ -1,26 +1,32 @@
 package com.test.automation.utilities;
 
 
+
 import net.masterthought.cucumber.Configuration;
 import net.masterthought.cucumber.ReportBuilder;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
-import java.io.FilenameFilter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Reporter {
 
+    private static Logger logger = LogManager.getLogger(Reporter.class.getName());
+
+    public Reporter() {
+
+    }
+
     public static void main(String[] arg) {
 
-        String reportsDir = ThisRun.getInstance().sessionState.get("REPORT_PATH").toString();
+        String reportsDir = arg[0];
         System.out.println(reportsDir);
         File reportOutputDirectory = new File(reportsDir);
 
-        List<String> jsonReportFiles = getListOfJsonReports(reportOutputDirectory);;
+        List<String> jsonReportFiles = getListOfJsonReports(reportOutputDirectory);
 
         if (jsonReportFiles.size() == 0) {
             throw new RuntimeException("ERROR - NO json reporter available to create HTML report");
@@ -31,9 +37,9 @@ public class Reporter {
 
             ReportBuilder reportBuilder = new ReportBuilder(jsonReportFiles, configuration);
             reportBuilder.generateReports();
-            System.out.println("\n\tHTML Reports are available here - "+ reportsDir + "/cucumber-html-reports \n" );
+            logger.info("\n\tHTML Reports are available here - "+ reportsDir + "/cucumber-html-reports \n" );
         } catch (Exception e) {
-            System.out.println("ERROR in creating consolidated reporter - "+ e);
+            logger.error("ERROR in creating consolidated reporter - "+ e);
         }
     }
 

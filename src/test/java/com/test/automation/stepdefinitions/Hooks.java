@@ -5,6 +5,8 @@ import com.test.automation.utilities.ThisRun;
 import com.test.automation.helpers.*;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import java.io.FileInputStream;
@@ -14,11 +16,13 @@ import java.util.Properties;
 public class Hooks {
 
     ThisRun thisRun  = ThisRun.getInstance();
+    private static Logger logger = LogManager.getLogger(Hooks.class.getName());
     DriverUtils driverUtils;
     WebDriver driver;
 
     @Before
     public void setup() throws IOException {
+        logger.info("Inside setup()..........");
         loadProperties();
         addDriverProperties();
     }
@@ -39,6 +43,7 @@ public class Hooks {
 
     @After
     public void tearDown() {
+        logger.info("Inside teardown(), now Browser will quit.....");
         driverUtils.quitBrowser();
     }
 
