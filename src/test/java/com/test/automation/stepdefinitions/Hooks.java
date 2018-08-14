@@ -1,8 +1,10 @@
 package com.test.automation.stepdefinitions;
 
 import com.test.automation.utilities.DriverUtils;
+import com.test.automation.utilities.ScreenShotUtils;
 import com.test.automation.utilities.ThisRun;
 import com.test.automation.helpers.*;
+import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import org.apache.logging.log4j.LogManager;
@@ -21,10 +23,11 @@ public class Hooks {
     WebDriver driver;
 
     @Before
-    public void setup() throws IOException {
-        logger.info("Inside setup()..........");
+    public void setup(Scenario scenario) throws IOException {
+        logger.info("Running scenario : "+ scenario.getName());
         loadProperties();
         addDriverProperties();
+
     }
 
     private void loadProperties() throws IOException {
@@ -42,8 +45,9 @@ public class Hooks {
     }
 
     @After
-    public void tearDown() {
+    public void tearDown(Scenario scenario) {
         logger.info("Inside teardown(), now Browser will quit.....");
+        ScreenShotUtils.embedScreenShotInReport(scenario, scenario.getName());
         driverUtils.quitBrowser();
     }
 
