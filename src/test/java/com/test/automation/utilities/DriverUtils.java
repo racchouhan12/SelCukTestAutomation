@@ -11,7 +11,7 @@ public class DriverUtils {
 
     private WebDriver driver;
 
-    ThisRun thisRun = ThisRun.getInstance();
+    private ThisRun thisRun = ThisRun.getInstance();
 
     private static Logger logger = LogManager.getLogger(DriverUtils.class.getName());
     public String browser;
@@ -22,7 +22,9 @@ public class DriverUtils {
 
 
     private WebDriver instantiateChromeDriver() {
-        System.setProperty("webdriver.chrome.driver", thisRun.getAsString("TEST_RESOURCES")+"/chromedriver");
+        String driverToBeLoaded = thisRun.getAsString("OS_NAME").contains("Windows") ? "chromedriver_win.exe": "chromedriver_mac";
+
+        System.setProperty("webdriver.chrome.driver", thisRun.getAsString("TEST_RESOURCES")+"/"+driverToBeLoaded);
         driver = new ChromeDriver();
         driver.get("http://www.google.com");
         driver.manage().window().fullscreen();
