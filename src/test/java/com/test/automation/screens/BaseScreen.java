@@ -10,7 +10,6 @@ public abstract class BaseScreen {
 
     final WebDriver driver;
     protected static Logger logger = LogManager.getLogger(BaseScreen.class.getName());
-
     protected BaseScreen() {
         logger.debug("BaseScreen intialized...");
         ThisRun thisRun = ThisRun.getInstance();
