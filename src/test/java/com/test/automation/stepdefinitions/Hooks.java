@@ -17,7 +17,7 @@ import java.util.Properties;
 
 public class Hooks {
 
-    ThisRun thisRun  = ThisRun.getInstance();
+    private ThisRun thisRun  = ThisRun.getInstance();
     private static Logger logger = LogManager.getLogger(Hooks.class.getName());
     DriverUtils driverUtils;
     WebDriver driver;
@@ -25,21 +25,22 @@ public class Hooks {
     @Before
     public void setup(Scenario scenario) throws IOException {
         logger.info("Running scenario : "+ scenario.getName());
-        loadProperties();
+        loadFromPropertiesFile();
         addDriverProperties();
 
     }
 
-    private void loadProperties() throws IOException {
+    private void loadFromPropertiesFile() throws IOException {
         FileInputStream fileStream =
-                new FileInputStream(thisRun.get("TEST_RESOURCES") + "/CommonProperties.properties");
+                new FileInputStream(thisRun.get(KEYS.TEST_RESOURCES.toString()) + "/CommonProperties.properties");
         Properties commonProperties = new Properties();
         commonProperties.load(fileStream);
-        thisRun.add(KEYS.BROWSER, commonProperties.getProperty("BROWSER"));
+        thisRun.add(KEYS.BROWSER, commonProperties.getProperty(KEYS.BROWSER.toString()));
+        thisRun.add(KEYS.APP_URL, commonProperties.getProperty(KEYS.APP_URL.toString()));
     }
 
     private void addDriverProperties() {
-        driverUtils = new DriverUtils(thisRun.getAsString("BROWSER"));
+        driverUtils = new DriverUtils(thisRun.getAsString(KEYS.BROWSER.toString()));
         driver = driverUtils.getDriver(driverUtils.browser);
         thisRun.add(KEYS.DRIVER, driver);
     }
