@@ -1,5 +1,6 @@
 package com.test.automation.utilities;
 
+import com.test.automation.helpers.KEYS;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.InvalidArgumentException;
@@ -22,11 +23,11 @@ public class DriverUtils {
 
 
     private WebDriver instantiateChromeDriver() {
-        String driverToBeLoaded = thisRun.getAsString("OS_NAME").contains("Windows") ? "chromedriver_win.exe": "chromedriver_mac";
+        String driverToBeLoaded = thisRun.getAsString(KEYS.OS_NAME.toString()).contains("Windows") ? "chromedriver_win.exe": "chromedriver_mac";
 
-        System.setProperty("webdriver.chrome.driver", thisRun.getAsString("TEST_RESOURCES")+"/"+driverToBeLoaded);
+        System.setProperty("webdriver.chrome.driver", thisRun.getAsString(KEYS.TEST_RESOURCES.toString())+"/"+driverToBeLoaded);
         driver = new ChromeDriver();
-        driver.get("http://www.google.com");
+        driver.get(thisRun.getAsString(KEYS.APP_URL.toString()));
         driver.manage().window().fullscreen();
         return driver;
     }
