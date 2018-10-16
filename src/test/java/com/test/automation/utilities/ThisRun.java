@@ -11,7 +11,7 @@ public class ThisRun {
 
     private static ThisRun ourInstance;
     private HashMap<String, Object> sessionState = new HashMap<>();
-    protected static Logger logger = LogManager.getLogger(ThisRun.class.getName());
+    private static Logger logger = LogManager.getLogger(ThisRun.class.getName());
 
     public static ThisRun getInstance() {
 
@@ -28,6 +28,7 @@ public class ThisRun {
         add(KEYS.TEST_RESOURCES, getAsString("PROJECT_PATH")+"/src/test/resources");
         add(KEYS.REPORT_PATH, getAsString("PROJECT_PATH")+"/reports");
         add(KEYS.FEATURE_FILES_PATH, getAsString("PROJECT_PATH")+"/src/test/resources/feature");
+        add(KEYS.OS_NAME, System.getProperty("os.name"));
     }
 
     public void add(String key, Object value) {
