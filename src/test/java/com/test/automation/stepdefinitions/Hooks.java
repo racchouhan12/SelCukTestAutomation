@@ -41,7 +41,7 @@ public class Hooks {
 
     private void addDriverProperties() {
         driverUtils = new DriverUtils(thisRun.getAsString(KEYS.BROWSER.toString()));
-        driver = driverUtils.getDriver(driverUtils.browser);
+        driver = driverUtils.getDriver();
         thisRun.add(KEYS.DRIVER, driver);
     }
 
