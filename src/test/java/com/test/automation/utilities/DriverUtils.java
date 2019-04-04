@@ -41,7 +41,12 @@ public class DriverUtils {
     }
 
     private WebDriver instantiateFireFoxDriver() {
+        String driverToBeLoaded = thisRun.getAsString(KEYS.OS_NAME.toString()).contains("Windows") ? "geckodriver_win.exe": "geckodriver_mac.exe";
+
+        System.setProperty("webdriver.gecko.driver", thisRun.getAsString(KEYS.TEST_RESOURCES.toString())+"/"+driverToBeLoaded);
         driver = new FirefoxDriver();
+        driver.get(thisRun.getAsString(KEYS.APP_URL.toString()));
+        driver.manage().window().fullscreen();
         return driver;
     }
 
