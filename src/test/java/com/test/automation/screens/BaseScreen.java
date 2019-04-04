@@ -6,6 +6,13 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 public abstract class BaseScreen {
 
@@ -38,5 +45,14 @@ public abstract class BaseScreen {
 
     protected void sendTextInElement(String text, By by) {
         driver.findElement(by).sendKeys(text);
+    }
+
+    protected void waitForElementToBeClickableAndClickOnElement(By by) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(by)).click();
+    }
+
+    protected String getCurrentURL() {
+        return driver.getCurrentUrl();
     }
 }
