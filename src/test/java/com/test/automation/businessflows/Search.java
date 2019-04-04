@@ -4,8 +4,8 @@ import com.test.automation.screens.SearchScreen;
 
 public class Search {
 
-    public void searchText(String text) {
-        SearchScreen.getInstance().searchText(text);
+    public void searchText(String searchText) {
+        SearchScreen.getInstance().searchTextOnGoogleHomePage(searchText);
     }
 
 }
