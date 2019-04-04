@@ -1,11 +1,10 @@
 Feature: Search in Google
 
-  @search
-  Scenario: Search and open content
-    Given I open Google and search for "seleniumhq"
 
-  Scenario: Search and open content 2
-    Given I open Google and search for "seleniumhq"
+   @foo
+  Scenario: Search for SeleniumHQ and verify the website
+     Given I search for "seleniumhq"
+     When I click on official Selenium HQ website
+     Then I verify official website is launched
 
-  Scenario: open content 2
-    Given I open Google and search for "seleniumhq"
+
