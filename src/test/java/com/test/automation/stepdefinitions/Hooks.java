@@ -37,6 +37,8 @@ public class Hooks {
         commonProperties.load(fileStream);
         thisRun.add(KEYS.BROWSER, commonProperties.getProperty(KEYS.BROWSER.toString()));
         thisRun.add(KEYS.APP_URL, commonProperties.getProperty(KEYS.APP_URL.toString()));
+        thisRun.add(KEYS.STANDALONE_SERVER_PATH, commonProperties.getProperty(KEYS.STANDALONE_SERVER_PATH.toString()));
+        thisRun.add(KEYS.REMOTEWEBDRIVER_BROWSERS, commonProperties.getProperty(KEYS.REMOTEWEBDRIVER_BROWSERS.toString()));
     }
 
     private void addDriverProperties() {

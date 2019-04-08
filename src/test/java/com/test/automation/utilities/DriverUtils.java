@@ -4,13 +4,17 @@ import com.test.automation.helpers.KEYS;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.InvalidArgumentException;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,7 +54,39 @@ public class DriverUtils {
         return driver;
     }
 
-     public WebDriver instantiateMobileEmulatorDriver()  {
+    private WebDriver instantiateRemoteWebDriver()  {
+        try {
+            Command.execCommand("test");
+            driver = new RemoteWebDriver(getBrowserCapabilities(getBrowserNamesForRemoteWebdriver()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        driver.get(thisRun.getAsString(KEYS.APP_URL.toString()));
+        driver.manage().window().fullscreen();
+        return driver;
+    }
+
+    private String getBrowserNamesForRemoteWebdriver() {
+        return thisRun.getAsString(KEYS.REMOTEWEBDRIVER_BROWSERS.toString());
+    }
+
+    private DesiredCapabilities getBrowserCapabilities(String browserType) {
+        switch (browserType) {
+            case "firefox":
+                logger.info("Opening firefox driver in Node");
+                return DesiredCapabilities.firefox();
+            case "chrome":
+                logger.info("Opening chrome driver in Node");
+                return DesiredCapabilities.chrome();
+            case "IE":
+                logger.info("Opening IE driver in Node");
+                return DesiredCapabilities.internetExplorer();
+            default:
+                throw new InvalidArgumentException("browser : " + browserType + " is invalid.");
+        }
+    }
+
+    public WebDriver instantiateMobileEmulatorDriver()  {
 
          String driverToBeLoaded = thisRun.getAsString(KEYS.OS_NAME.toString()).contains("Windows") ? "chromedriver_win.exe": "chromedriver_mac";
          System.setProperty("webdriver.chrome.driver", thisRun.getAsString(KEYS.TEST_RESOURCES.toString())+"/"+driverToBeLoaded);
@@ -103,6 +139,8 @@ public class DriverUtils {
                 return instantiateChromeDriver();
             case "firefox":
                 return instantiateFireFoxDriver();
+            case "remotewebdriver":
+                return instantiateRemoteWebDriver();
              default:
                  throw new InvalidArgumentException("Invalid browser type");
         }

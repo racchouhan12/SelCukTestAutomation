@@ -8,11 +8,12 @@ import org.junit.runner.RunWith;
 import java.lang.annotation.Annotation;
 
 @RunWith(Cucumber.class)
-/*@CucumberOptions(
-        features = {"/Users/Ness/Documents/testautomation/src/test/resources/feature"},
+@CucumberOptions(
+        features = {"./src/test/resources/feature"},
         glue = {"com.test.automation.stepdefinitions"},
-        plugin = {"pretty", "html:reports/html", "json:reports/cucumber.json"}
-        )*/
+        plugin = {"pretty", "html:reports/html", "json:reports/cucumber.json"},
+        tags = {"foo"}
+        )
 
 public class Runcukes {
 }
