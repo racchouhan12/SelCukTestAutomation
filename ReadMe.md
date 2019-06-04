@@ -20,9 +20,9 @@ Project has Page Object model as its design pattern.
     feature -> stepdefinitions -> businessflows -> screens
 
     1.      feature -> It is test/resources. It will contain all feature files (.feature).
-    2.     stepdefinitions -> This folder has java files which contains step definitions corresponding in feature file.
-    3.    businessflows -> This folder has java files which contains which contains business logic or assertions
-    4.     screens -> This folder has java files which perform actual actions on the web browser.
+    2.      stepdefinitions -> This folder has java files which contains step definitions corresponding in feature file.
+    3.      businessflows -> This folder has java files which contains which contains business logic or assertions
+    4.      screens -> This folder has java files which perform actual actions on the web browser.
 
 4. In resources there are couple of more files like .exe, .properties.
 5. In CommonProperties.properties we are passing browser name it will have more keys as framework expands.
@@ -35,17 +35,9 @@ Project has Page Object model as its design pattern.
 
         Call hierarchy are as follows:
 
-        Runcuckes
-            |
-        Hooks: [ThisRun.java will be called in Hooks itself and driver intialization and other Keys are setup here]
-            |
-        features
-            |
-        stepdefinitions
-            |
-        businessflows
-            |
-        screens
+        Runcuckes ->  Hooks:  -> features ->  stepdefinitions -> businessflows ->  screens
+
+        ######  Note: ThisRun.java will be called in Hooks itself and driver intialization and other Keys are setup here
 
  ##  Rules to be followed:
 
