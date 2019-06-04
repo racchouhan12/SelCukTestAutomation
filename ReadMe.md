@@ -1,17 +1,17 @@
-##About Project
+##  About Project
 
 It is Selenium - Cucumber (BDD) project will be used to automate web application.
 Project has Page Object model as its design pattern.
 
 
-##Pre-requisites:
+## Pre-requisites:
 
 1. Java8 or higher should be installed.
 2. Set JAVA_HOME
 3. Install maven and set MAVEN_HOME
 4. Add JAVA_HOME and MAVEN_HOME in your Path variable.
 
-##Framework structure:
+## Framework structure:
 
 1. Project is a maven project.
 2. Our framework code lies mainly in src/test folder.
@@ -46,13 +46,13 @@ Project has Page Object model as its design pattern.
             |
         screens
 
- ##Rules to be followed:
+ ##  Rules to be followed:
 
  1. We should not call screens directly from stepdefinitions call hierarchy should be maintained (stepdefinitions -> businessflows -> screens).
  2. All assertions should be done in businessflows only
  3. Mutiple businessflows can be called from stepdefinitions
 
- ##How to run Test:
+ ##  How to run Test:
 
  1. To run specific scenarios use command : run=@foo mvn test -PRunTest (For MAC)
     For Windows you might need to use
@@ -60,4 +60,4 @@ Project has Page Object model as its design pattern.
     b. mvn test -PRunTest
  2. To run all scenarios use command : mvn test -PRunTest
 
- ######Note: In both cases scenarios with tags @wip or @failing will be ignored.
+ ######  Note: In both cases scenarios with tags @wip or @failing will be ignored.
