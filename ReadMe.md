@@ -1,3 +1,4 @@
+
 ##  About Project
 
 It is Selenium - Cucumber (BDD) project will be used to automate web application.
@@ -18,19 +19,19 @@ Project has Page Object model as its design pattern.
 3. Project has three layer approach or calling:
     feature -> stepdefinitions -> businessflows -> screens
 
-    i.      feature -> It is test/resources. It will contain all feature files (.feature).
-    ii.     stepdefinitions -> This folder has java files which contains step definitions corresponding in feature file.
-    iii.    businessflows -> This folder has java files which contains which contains business logic or assertions
-    iv.     screens -> This folder has java files which perform actual actions on the web browser.
+    1.      feature -> It is test/resources. It will contain all feature files (.feature).
+    2.     stepdefinitions -> This folder has java files which contains step definitions corresponding in feature file.
+    3.    businessflows -> This folder has java files which contains which contains business logic or assertions
+    4.     screens -> This folder has java files which perform actual actions on the web browser.
 
 4. In resources there are couple of more files like .exe, .properties.
 5. In CommonProperties.properties we are passing browser name it will have more keys as framework expands.
 6. We have utilities package which contains utilities for driver, reporting and maintaing session state of objects(ThisRun.java)
 7. Call flows are as follows:
-    i. run commands:
+    1. run commands:
         a. mvn clean
         b. mvn install or mvn test
-    ii. Now execution will begin
+    2. Now execution will begin
 
         Call hierarchy are as follows:
 
@@ -56,8 +57,8 @@ Project has Page Object model as its design pattern.
 
  1. To run specific scenarios use command : run=@foo mvn test -PRunTest (For MAC)
     For Windows you might need to use
-    a. set run=@foo
-    b. mvn test -PRunTest
+    1. set run=@foo
+    2. mvn test -PRunTest
  2. To run all scenarios use command : mvn test -PRunTest
 
  ######  Note: In both cases scenarios with tags @wip or @failing will be ignored.
