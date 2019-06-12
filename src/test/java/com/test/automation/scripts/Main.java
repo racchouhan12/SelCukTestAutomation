@@ -82,6 +82,5 @@ public class Main {
         byte exitstatus = cucumber.api.cli.Main.run(getCucumberOptions(), Thread.currentThread().getContextClassLoader());
         generateHTMLReports(reportPath);
         logger.info("Exit status is:" +exitstatus);
-        System.exit(exitstatus);
     }
 }
