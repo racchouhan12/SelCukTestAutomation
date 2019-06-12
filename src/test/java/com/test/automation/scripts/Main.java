@@ -21,11 +21,16 @@ public class Main {
 
     }
 
-    private static String createReportFolder() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH_mm_ss");
-        reportFolderPath = thisRun.getAsString(KEYS.PROJECT_PATH.name())+"/reports/reports_"+dateFormat.format(new Date());
+    private static String createReportFolder(String isJenkins) {
+        if("true".equals(isJenkins)) {
+            reportFolderPath = thisRun.getAsString(KEYS.PROJECT_PATH.name())+"/reports";
+        } else {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH_mm_ss");
+            reportFolderPath = thisRun.getAsString(KEYS.PROJECT_PATH.name()) + "/reports/reports_" + dateFormat.format(new Date());
+        }
         FileUtils.createFolder(reportFolderPath);
         logger.info("Report folder created: "+ reportFolderPath);
+
         return reportFolderPath;
     }
 
@@ -72,7 +77,7 @@ public class Main {
     }
 
     public static void main(String[] argv) throws Throwable {
-        String reportPath = createReportFolder();
+        String reportPath = createReportFolder(System.getenv("isJenkins"));
         logger.info("Starting Scenario execution....");
         byte exitstatus = cucumber.api.cli.Main.run(getCucumberOptions(), Thread.currentThread().getContextClassLoader());
         generateHTMLReports(reportPath);
