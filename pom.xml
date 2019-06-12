@@ -171,6 +171,7 @@
                                         </additionalClasspathElement>
                                     </additionalClasspathElements>
                                     <mainClass>com.test.automation.scripts.Main</mainClass>
+                                    <cleanupDaemonThreads> false </cleanupDaemonThreads >
                                 </configuration>
                             </execution>
                         </executions>
