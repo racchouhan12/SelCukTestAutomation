@@ -15,5 +15,5 @@ import java.lang.annotation.Annotation;
         tags = {"foo"}
         )
 
-public class Runcukes {
+public class RuncukesTest {
 }

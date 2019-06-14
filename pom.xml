@@ -147,7 +147,7 @@
                         <executions>
                             <execution>
                                 <id>run-cucumber</id>
-                                <phase>test-compile</phase>
+                                <phase>test</phase>
                                 <goals>
                                     <goal>java</goal>
                                 </goals>
