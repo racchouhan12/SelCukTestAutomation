@@ -12,8 +12,8 @@ import java.lang.annotation.Annotation;
         features = {"./src/test/resources/feature"},
         glue = {"com.test.automation.stepdefinitions"},
         plugin = {"pretty", "html:reports/html", "json:reports/cucumber.json"},
-        tags = {"foo"}
+        tags = {"@foo"}
         )
 
-public class RuncukesTest {
+public class Runcukes {
 }

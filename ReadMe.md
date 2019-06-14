@@ -1,5 +1,5 @@
 
-# About Project
+#  About Project
 
 It is Selenium - Cucumber (BDD) project will be used to automate web application.
 Project has Page Object model as its design pattern.
@@ -51,7 +51,6 @@ Project has Page Object model as its design pattern.
     For Windows you might need to use
     1. set run=@foo
     2. mvn test -PRunTest
- 2. To run all scenarios use command : mvn test -PRunTest OR
- 3. mvn test -Dcucumber.options="--tags @foo" ("--tags [tag name]")
+ 2. To run all scenarios use command : mvn test -PRunTest
 
  ######  Note: In both cases scenarios with tags @wip or @failing will be ignored.
